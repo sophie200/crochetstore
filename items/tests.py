@@ -1,15 +1,28 @@
-from django.test import TestCase
+from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
 from django.urls import reverse
 
 # Create your tests here.
-from .models import Item
+from .models import Item, Review
 
 class ItemTests(TestCase):
 
     def setUp(self):
+        self.user = get_user_model().objects.create_user(
+            username='reviewuser',
+            email='reviewuser@email.com',
+            password='testpass123'
+        )
+
         self.item = Item.objects.create(
             label = 'jeans',
             price = '50.00',
+        )
+
+        self.review = Review.objects.create(
+            item = self.item,
+            author = self.user,
+            review = 'An excellent review',
         )
 
     def test_item_listing(self):
@@ -29,3 +42,4 @@ class ItemTests(TestCase):
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'jeans')
         self.assertTemplateUsed(response, 'items/item_detail.html')
+        self.assertContains(response, 'An excellent review')
