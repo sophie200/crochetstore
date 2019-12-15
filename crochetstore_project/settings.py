@@ -163,3 +163,4 @@ STATICFILES_FINDERS = [
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+DEFAULT_FROM_EMAIL = 'admin@wycrochet.com'
