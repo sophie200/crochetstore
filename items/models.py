@@ -11,12 +11,18 @@ class Item(models.Model):
         editable=False)
     label = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    cover = models.ImageField(upload_to='covers/', blank=True)
+
+    class Meta:
+        permissions = [
+            ('special_status', 'Can read all items'),
+        ]
 
     def __str__(self):
         return self.label
 
     def get_absolute_url(self):
-        return reverse('item_detail', args=[str(self.id)])
+        return reverse('item_detail', kwargs={'pk': str(self.pk)})
 
 class Review(models.Model):
     item = models.ForeignKey(
