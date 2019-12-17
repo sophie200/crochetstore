@@ -3,6 +3,9 @@
 {% block title %}Items{% endblock title %}
 
 {% block content %}
+{% if not perms.item.special_status %}
+<a href = "{% url 'orders' %}" class="btn btn-success" >Purchase All Items</a>
+{% endif %}
   {% for item in item_list %}
     <div>
       <h2> <a href="{{ item.get_absolute_url }}">{{ item.label }}</a></h2>
