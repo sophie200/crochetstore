@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+<h1>Search Results</h1>
+  {% for item in item_list %}
+    <div>
+      <h3> <a href="{{ item.get_absolute_url }}">{{ item.label }}</a></h3>
+      <p>Price: $ {{ item.price }}</p>
+    </div>
+  {% endfor %}
+{% endblock content %}
