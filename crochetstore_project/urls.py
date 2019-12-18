@@ -19,19 +19,17 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # Django admin
+    path('huskynotebookbear', admin.site.urls),
 
-    # User managemetnt
+    # User management
     path('accounts/', include('allauth.urls')),
 
     # Local apps
     path('', include('pages.urls')),
     path('items/', include('items.urls')),
     path('orders/', include('orders.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
 
 if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
