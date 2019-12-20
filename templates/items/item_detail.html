@@ -10,13 +10,5 @@
   {% endif %}
   <h2> <a href="">{{ item.label }}</a></h2>
   <p>Price: {{ item.price }} </p>
-  <div>
-    <h3>Reviews</h3>
-    <ul>
-      {% for review in item.reviews.all %}
-      <li>{{ review.review }} ({{ review.author }})</li>
-      {% endfor %}
-    </ul>
-  </div>
 </div>
 {% endblock content %}

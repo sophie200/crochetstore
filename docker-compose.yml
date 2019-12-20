@@ -4,7 +4,7 @@ services:
   web:
     build: .
     # command: python /code/manage.py runserver 0.0.0.0:8000
-    command: gunicorn crochetstore_project.wsgi -b 0.0.0.0:8000
+    command: python /code/manage.py runserver 0.0.0.0:8000
     environment:
       - ENVIRONMENT=development
       - SECRET_KEY=6wbm34lm0l-=$$bf@2)2padz0485rt6=)9s!5cahn(ay9hw2b_1
